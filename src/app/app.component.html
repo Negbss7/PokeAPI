@@ -1,0 +1,18 @@
+<div class="site-shell">
+  <header class="site-header">
+    <a class="brand" routerLink="/" aria-label="Ir para a lista de Pokémon">
+      <span class="pokeball-icon" aria-hidden="true"><span></span></span>
+      <span>mini<span class="brand-highlight">pokedex</span><span class="brand-dot">.</span></span>
+    </a>
+    <span class="header-note"><span class="online-dot"></span> Consumo de API REST</span>
+  </header>
+
+  <main class="main-container">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="site-footer">
+    <span>Projeto acadêmico desenvolvido com Angular + HttpClient</span>
+    <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">Dados fornecidos pela PokéAPI ↗</a>
+  </footer>
+</div>

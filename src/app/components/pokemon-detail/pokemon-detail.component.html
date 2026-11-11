@@ -1,0 +1,87 @@
+<nav class="breadcrumbs" aria-label="Navegação">
+  <a routerLink="/">Pokédex</a>
+  <span aria-hidden="true">/</span>
+  <span>Detalhes</span>
+</nav>
+
+@if (carregando) {
+  <div class="detail-status" role="status" aria-live="polite">
+    <div class="spinner"></div>
+    <p>Buscando informações na PokéAPI...</p>
+  </div>
+} @else if (erro) {
+  <div class="detail-status error" role="alert">
+    <p>{{ erro }}</p>
+    <div class="action-row">
+      <button type="button" (click)="carregarDetalhes()">Tentar novamente</button>
+      <a routerLink="/">Voltar à listagem</a>
+    </div>
+  </div>
+} @else if (pokemon; as p) {
+  <section class="detail-heading">
+    <div>
+      <div class="eyebrow">FICHA DO POKÉMON <span> / </span> #{{ formatarId(p.id) }}</div>
+      <h1>{{ formatarNome(p.name) }}<span class="title-dot">.</span></h1>
+      <p>Informações oficiais consultadas diretamente na PokéAPI.</p>
+    </div>
+    <a class="back-link" routerLink="/"><span aria-hidden="true">←</span> Voltar à listagem</a>
+  </section>
+
+  <section class="detail-layout" aria-label="Dados do Pokémon">
+    <div class="picture-panel">
+      <div class="picture-backdrop"></div>
+      <span class="picture-id">#{{ formatarId(p.id) }}</span>
+      @if (imagem) {
+        <img [src]="imagem" [alt]="'Imagem do Pokémon ' + p.name" width="360" height="360">
+      }
+      <span class="picture-caption">POKÉMON Nº {{ formatarId(p.id) }}</span>
+    </div>
+
+    <div class="information-panel">
+      <div class="info-card overview">
+        <div class="card-kicker">INFORMAÇÕES GERAIS</div>
+        <h2>Sobre o Pokémon</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <span class="stat-label">Identificação</span>
+            <strong>#{{ formatarId(p.id) }}</strong>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Altura</span>
+            <strong>{{ alturaEmMetros }} <small>m</small></strong>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Peso</span>
+            <strong>{{ pesoEmQuilos }} <small>kg</small></strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-kicker">CLASSIFICAÇÃO</div>
+        <h2>Tipo(s)</h2>
+        <div class="chips">
+          @for (item of p.types; track item.slot) {
+            <span [class]="'type-chip type-' + item.type.name">{{ traduzirTipo(item.type.name) }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-kicker">CARACTERÍSTICAS</div>
+        <h2>Habilidades</h2>
+        <div class="abilities">
+          @for (item of p.abilities; track item.slot) {
+            <div class="ability-row">
+              <span class="ability-mark">✦</span>
+              <span class="ability-name">{{ formatarNome(item.ability.name) }}</span>
+              @if (item.is_hidden) {
+                <span class="hidden-label">Oculta</span>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+}

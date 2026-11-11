@@ -1,0 +1,52 @@
+<section class="intro">
+  <div class="eyebrow"><span class="eyebrow-circle"></span> POKÉDEX / PRIMEIRA GERAÇÃO</div>
+  <h1>Conheça os <span>primeiros 20</span> Pokémon<span class="period">.</span></h1>
+  <p>Explore os Pokémon da primeira geração. Selecione um card para descobrir suas características, tipos e habilidades.</p>
+  <div class="intro-meta">
+    <span class="count-pill">20 Pokémon</span>
+    <span class="small-note">Clique em um card para ver os detalhes <span aria-hidden="true">↗</span></span>
+  </div>
+</section>
+
+<section aria-label="Listagem de Pokémon">
+  <div class="section-heading">
+    <div>
+      <span class="section-overline">CATÁLOGO</span>
+      <h2>Escolha um Pokémon</h2>
+    </div>
+    <span class="section-total">#001 — #020</span>
+  </div>
+
+  @if (carregando) {
+    <div class="status-area" role="status" aria-live="polite">
+      <div class="spinner"></div>
+      <p>Carregando Pokémon da PokéAPI...</p>
+    </div>
+  } @else if (erro) {
+    <div class="status-area error" role="alert">
+      <span class="status-icon">!</span>
+      <p>{{ erro }}</p>
+      <button type="button" (click)="carregarPokemons()">Tentar novamente</button>
+    </div>
+  } @else {
+    <div class="pokemon-grid">
+      @for (pokemon of pokemons; track pokemon.id) {
+        <a class="pokemon-card" [routerLink]="['/pokemon', pokemon.id]" [attr.aria-label]="'Ver detalhes de ' + pokemon.name">
+          <div class="card-top">
+            <span class="pokemon-number">#{{ formatarId(pokemon.id) }}</span>
+            <span class="arrow-circle" aria-hidden="true">↗</span>
+          </div>
+          <div class="pokemon-art">
+            <img [src]="pokemon.imageUrl" [alt]="'Imagem do Pokémon ' + pokemon.name" loading="lazy" width="168" height="168">
+          </div>
+          <div class="card-bottom">
+            <span class="pokemon-name">{{ pokemon.name }}</span>
+            <span class="card-hint">Ver detalhes</span>
+          </div>
+        </a>
+      } @empty {
+        <p>Nenhum Pokémon foi encontrado.</p>
+      }
+    </div>
+  }
+</section>

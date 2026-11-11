@@ -1,0 +1,12 @@
+.site-shell{min-height:100vh;display:flex;flex-direction:column}
+.site-header{width:min(1200px,calc(100% - 48px));margin:0 auto;padding:25px 0 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #e6ebf2}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#17233b;font-size:22px;font-weight:900;letter-spacing:-1.2px}
+.brand-highlight{color:#f24f53}.brand-dot{color:#fcbd4e}
+.pokeball-icon{width:34px;height:34px;border:3px solid #202841;border-radius:50%;background:linear-gradient(to bottom,#f24f53 0 45%,#202841 45% 55%,#fff 55%);position:relative;display:inline-grid;place-items:center;transform:rotate(-16deg)}
+.pokeball-icon span{width:12px;height:12px;border:3px solid #202841;border-radius:50%;background:#fff;position:absolute;top:8px}
+.header-note{font-size:12px;font-weight:700;color:#778299;letter-spacing:.4px;display:flex;align-items:center;gap:8px}
+.online-dot{width:8px;height:8px;background:#4db890;border-radius:50%;box-shadow:0 0 0 4px #dff6e9}
+.main-container{flex:1;width:min(1200px,calc(100% - 48px));margin:0 auto}
+.site-footer{width:min(1200px,calc(100% - 48px));margin:55px auto 0;padding:24px 0 30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #e6ebf2;color:#8792a5;font-size:12px}
+.site-footer a{color:#e34c54;text-decoration:none;font-weight:700}
+@media (max-width:600px){.site-header,.main-container,.site-footer{width:calc(100% - 32px)}.site-header{padding:18px 0}.brand{font-size:20px}.header-note{display:none}.site-footer{margin-top:36px}}

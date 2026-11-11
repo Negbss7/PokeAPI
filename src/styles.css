@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
+:root{font-family:'Nunito Sans',Arial,sans-serif;color:#253750;background:#f8fafc;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+body{margin:0}
+button,a{font:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid rgba(234,89,100,.45);outline-offset:4px}
+::selection{background:#ffe0e4;color:#b73849}
